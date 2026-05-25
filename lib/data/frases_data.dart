@@ -4,32 +4,32 @@ import '../models/frase_model.dart';
 List<FraseModel> frases = [
   FraseModel(
     texto: "Quero Água",
-    icone: Icons.local_drink,
-    cor: Colors.blue,
+    icone: Icons.local_drink.codePoint,
+    cor: Colors.blue.value,
   ),
   FraseModel(
     texto: "Tenho dor",
-    icone: Icons.sentiment_dissatisfied,
-    cor: Colors.orange,
+    icone: Icons.sentiment_dissatisfied.codePoint,
+    cor: Colors.orange.value,
   ),
   FraseModel(
     texto: "Banheiro",
-    icone: Icons.wc,
-    cor: Colors.green,
+    icone: Icons.wc.codePoint,
+    cor: Colors.green.value,
   ),
   FraseModel(
     texto: "Ajuda",
-    icone: Icons.sos,
-    cor: Colors.red,
+    icone: Icons.sos.codePoint,
+    cor: Colors.red.value,
   ),
   FraseModel(
     texto: "Tenho Fome",
-    icone: Icons.restaurant,
-    cor: Colors.orange.shade300,
+    icone: Icons.restaurant.codePoint,
+    cor: Colors.orange.shade300.value,
   ),
   FraseModel(
     texto: "Quero ir p/ casa",
-    icone: Icons.home,
-    cor: Colors.purple,
+    icone: Icons.home.codePoint,
+    cor: Colors.purple.value,
   ),
 ];

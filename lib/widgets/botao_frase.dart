@@ -1,94 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:toque_fale/models/frase_model.dart';
 
 class BotaoFrase extends StatelessWidget {
 
   final String texto;
+
   final IconData icone;
+
   final Color cor;
 
+  final VoidCallback onTap;
+
+  final VoidCallback? onLongPress;
+
   const BotaoFrase({
+
     super.key,
+
     required this.texto,
+
     required this.icone,
+
     required this.cor,
+
+    required this.onTap,
+
+    this.onLongPress, required FraseModel frase,
   });
 
   @override
   Widget build(BuildContext context) {
 
-    return Container(
+    return GestureDetector(
 
-      decoration: BoxDecoration(
+      onTap: onTap,
 
-        color: cor,
+      onLongPress: onLongPress,
 
-        borderRadius: BorderRadius.circular(25),
+      child: Container(
 
-        border: Border.all(
-          color: Colors.white,
-          width: 5,
+        margin: const EdgeInsets.all(8),
+
+        decoration: BoxDecoration(
+
+          color: cor,
+
+          borderRadius:
+              BorderRadius.circular(20),
         ),
 
-        boxShadow: const [
+        child: Column(
 
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(2, 4),
-          ),
-        ],
-      ),
+          mainAxisAlignment:
+              MainAxisAlignment.center,
 
-      child: Material(
+          children: [
 
-        color: Colors.transparent,
+            Icon(
 
-        child: InkWell(
+              icone,
 
-          borderRadius: BorderRadius.circular(25),
+              size: 50,
 
-          onTap: () {
-
-            ScaffoldMessenger.of(context).showSnackBar(
-
-              SnackBar(
-                content: Text(texto),
-              ),
-            );
-          },
-
-          child: Padding(
-
-            padding: const EdgeInsets.all(10),
-
-            child: Column(
-
-              mainAxisAlignment: MainAxisAlignment.center,
-
-              children: [
-
-                Icon(
-                  icone,
-                  color: Colors.white,
-                  size: 65,
-                ),
-
-                const SizedBox(height: 15),
-
-                Text(
-                  texto,
-
-                  textAlign: TextAlign.center,
-
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+              color: Colors.white,
             ),
-          ),
+
+            const SizedBox(height: 12),
+
+            Padding(
+
+              padding:
+                  const EdgeInsets.symmetric(
+                horizontal: 8,
+              ),
+
+              child: Text(
+
+                texto,
+
+                textAlign: TextAlign.center,
+
+                style: const TextStyle(
+
+                  color: Colors.white,
+
+                  fontSize: 20,
+
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

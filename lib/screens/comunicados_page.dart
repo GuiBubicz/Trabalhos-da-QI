@@ -5,102 +5,74 @@ class ComunicadosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return ListView(
-
-      padding: const EdgeInsets.all(20),
-
-      children: [
-
-        comunicadoCard(
-          "Consulta médica",
-          "Você possui consulta amanhã às 14h.",
-          Icons.calendar_month,
-          Colors.blue,
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Comunicados",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView(
+                children: [
+                  _buildComunicadoCard(
+                    nome: "Mãe",
+                    mensagem: "A comida está pronta.",
+                    horario: "09:13",
+                    imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxIEAtoj0BFxg_egIdK8hbTYH6UDZSeiq30g&s", // imagem exemplo
+                  ),
+                  const SizedBox(height: 12),
+                  _buildComunicadoCard(
+                    nome: "Medica",
+                    mensagem: "Sua consulta está marcada para amanhã.",
+                    horario: "09:12",
+                    imagem: "https://m.media-amazon.com/images/S/pv-target-images/440c8b6272b630caa0714332668e03b3de99082e6ea668aa3dd67b4f72039c2a.png",
+                  ),
+                  const SizedBox(height: 12),
+                  _buildComunicadoCard(
+                    nome: "Diretora Do Hospital",
+                    mensagem: "Amanha Tem Reunião às 14h.",
+                    horario: "Agora",
+                    imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFNx3WpSxB_W5_vmGlactTMQ4lfqJpcP9WJw&s",
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-
-        comunicadoCard(
-          "Remédio",
-          "Horário do medicamento às 18h.",
-          Icons.medication,
-          Colors.red,
-        ),
-
-        comunicadoCard(
-          "Família",
-          "Sua família enviou uma mensagem.",
-          Icons.family_restroom,
-          Colors.green,
-        ),
-      ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Nova mensagem (em desenvolvimento)")),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
-  Widget comunicadoCard(
-    String titulo,
-    String descricao,
-    IconData icone,
-    Color cor,
-  ) {
-
-    return Container(
-
-      margin: const EdgeInsets.only(bottom: 20),
-
-      padding: const EdgeInsets.all(20),
-
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-
-      child: Row(
-
-        children: [
-
-          CircleAvatar(
-            radius: 30,
-            backgroundColor: cor,
-
-            child: Icon(
-              icone,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
-
-          const SizedBox(width: 20),
-
-          Expanded(
-
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-
-              children: [
-
-                Text(
-                  titulo,
-
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                const SizedBox(height: 5),
-
-                Text(
-                  descricao,
-
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+  Widget _buildComunicadoCard({
+    required String nome,
+    required String mensagem,
+    required String horario,
+    required String imagem,
+  }) {
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(imagem),
+          radius: 28,
+        ),
+        title: Text(nome, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(mensagem),
+        trailing: Text(horario, style: const TextStyle(color: Colors.grey)),
       ),
     );
   }
