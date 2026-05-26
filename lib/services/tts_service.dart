@@ -5,7 +5,7 @@ class TtsService {
 
   static Future falar(String texto) async {
     await _tts.setLanguage('pt-BR');
-    await _tts.setSpeechRate(0.9);
+    await _tts.setSpeechRate(0.5);
     await _tts.speak(texto);
   }
 }

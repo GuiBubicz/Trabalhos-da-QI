@@ -39,9 +39,10 @@ class _FraseFormPageState extends State<FraseFormPage> {
     _textoController = TextEditingController(text: widget.frase?.texto);
     if (widget.frase != null) {
     _iconeSelecionado = IconData(
-  widget.frase!.icone,
-  fontFamily: 'MaterialIcons',
-);
+    //ignore: non_const_argument_for_const_parameter
+    widget.frase!.icone,
+    fontFamily: 'MaterialIcons',
+  );
 
 _corSelecionada = Color(
   widget.frase!.cor,

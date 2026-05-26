@@ -8,6 +8,7 @@ import '../widgets/botao_frase.dart';
 import 'frase_form_page.dart';
 import 'perfil_page.dart';
 import 'comunicados_page.dart';
+// ignore: duplicate_import
 import 'package:toque_fale/screens/frase_form_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,6 +29,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     carregarFrases();
+  }
+
+   Future falar(String texto) async {
+    await TtsService.falar(texto);
+
   }
 
   Future<void> carregarFrases() async {
@@ -87,6 +93,7 @@ class _HomePageState extends State<HomePage> {
                  texto: frase.texto,
 
                   icone: IconData(
+                 // ignore: non_const_argument_for_const_parameter
                  frase.icone,
                   fontFamily: 'MaterialIcons',
                ),
@@ -95,7 +102,7 @@ class _HomePageState extends State<HomePage> {
 
                onTap: () {
 
-                  print(frase.texto);
+                  falar(frase.texto);
 
                 },
 
